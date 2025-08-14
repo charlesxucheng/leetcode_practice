@@ -1,6 +1,7 @@
 import scala.annotation.tailrec
 
-object Solution {
+// https://leetcode.com/problems/valid-parentheses/description/
+object ValidParenthesis {
 
   def isValid(s: String): Boolean = {
     val stack = collection.mutable.Stack[Char]()
