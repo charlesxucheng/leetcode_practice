@@ -13,6 +13,7 @@ class ThreeSumTest extends UnitSpec {
       )
       forAll(testData) { (nums, expected) =>
         ThreeSum.threeSum(nums) must contain theSameElementsAs expected
+        ThreeSumSingleLoop.treeSum(nums) must contain theSameElementsAs expected
       }
     }
   }
