@@ -7,7 +7,7 @@ class ValidateBSTTest extends UnitSpec {
 
   "Validating a single node tree" should {
     "return true" in {
-      ValidateBST.isValidBST(Some(TreeNode(1, None, None))) mustBe true
+      ValidateBST.isValidBST(Some(MyTreeNode(1, None, None))) mustBe true
     }
   }
 
@@ -15,10 +15,44 @@ class ValidateBSTTest extends UnitSpec {
     "return the expected result" in {
       val testData = Table(
         ("tree", "expected"),
-        (TreeNode(2, Some(TreeNode(1, None, None)), Some(TreeNode(3, None, None))), true),
-        (TreeNode(5, Some(TreeNode(1, None, None)), Some(TreeNode(6, None, None))), true),
-        (TreeNode(5, Some(TreeNode(1, None, None)), Some(TreeNode(6, Some(TreeNode(3, None, None)), None))), false),
-        (TreeNode(5, Some(TreeNode(1, None, None)), Some(TreeNode(4, Some(TreeNode(3, None, None)), Some(TreeNode(6, None, None))))), false)
+        (
+          MyTreeNode(
+            2,
+            Some(MyTreeNode(1, None, None)),
+            Some(MyTreeNode(3, None, None))
+          ),
+          true
+        ),
+        (
+          MyTreeNode(
+            5,
+            Some(MyTreeNode(1, None, None)),
+            Some(MyTreeNode(6, None, None))
+          ),
+          true
+        ),
+        (
+          MyTreeNode(
+            5,
+            Some(MyTreeNode(1, None, None)),
+            Some(MyTreeNode(6, Some(MyTreeNode(3, None, None)), None))
+          ),
+          false
+        ),
+        (
+          MyTreeNode(
+            5,
+            Some(MyTreeNode(1, None, None)),
+            Some(
+              MyTreeNode(
+                4,
+                Some(MyTreeNode(3, None, None)),
+                Some(MyTreeNode(6, None, None))
+              )
+            )
+          ),
+          false
+        )
       )
 
       forAll(testData) { (root, expected) =>

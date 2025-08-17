@@ -4,32 +4,32 @@ class BinaryTreeTraversalTest extends UnitSpec {
       val testData = Table(
         ("tree", "expected"),
         (
-          TreeNode(
+          MyTreeNode(
             3,
-            Some(TreeNode(9, None, None)),
+            Some(MyTreeNode(9, None, None)),
             Some(
-              TreeNode(
+              MyTreeNode(
                 20,
-                Some(TreeNode(15, None, None)),
-                Some(TreeNode(7, None, None))
+                Some(MyTreeNode(15, None, None)),
+                Some(MyTreeNode(7, None, None))
               )
             )
           ),
           List(List(3), List(9, 20), List(15, 7))
         ),
         (
-          TreeNode(
+          MyTreeNode(
             1,
-            Some(TreeNode(2, Some(TreeNode(3, None, None)), None)),
+            Some(MyTreeNode(2, Some(MyTreeNode(3, None, None)), None)),
             None
           ),
           List(List(1), List(2), List(3))
         ),
         (
-          TreeNode(
+          MyTreeNode(
             1,
             None,
-            Some(TreeNode(2, None, Some(TreeNode(3, None, None))))
+            Some(MyTreeNode(2, None, Some(MyTreeNode(3, None, None))))
           ),
           List(List(1), List(2), List(3))
         )

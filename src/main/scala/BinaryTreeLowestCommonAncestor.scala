@@ -8,10 +8,10 @@
 
 object BinaryTreeLowestCommonAncestor {
   def lowestCommonAncestor(
-      root: Option[TreeNode],
+      root: Option[MyTreeNode],
       p: Int,
       q: Int
-  ): Option[TreeNode] = {
+  ): Option[MyTreeNode] = {
     root match {
       case None       => None
       case Some(node) =>

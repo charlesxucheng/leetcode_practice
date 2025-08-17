@@ -2,14 +2,14 @@ import scala.annotation.tailrec
 
 object BinaryTreeTraversal {
 
-  def levelOrder(root: Option[TreeNode]): List[List[Int]] = bfs(root)
+  def levelOrder(root: Option[MyTreeNode]): List[List[Int]] = bfs(root)
 
-  private def bfs(root: Option[TreeNode]): List[List[Int]] = {
+  private def bfs(root: Option[MyTreeNode]): List[List[Int]] = {
 
     @tailrec
     // The pairs returned are (level, value)
     def bfsRec(
-        queue: List[(Int, TreeNode)],
+        queue: List[(Int, MyTreeNode)],
         acc: List[(Int, Int)]
     ): List[(Int, Int)] = {
       queue match {
