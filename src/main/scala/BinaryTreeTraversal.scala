@@ -1,24 +1,32 @@
 import scala.annotation.tailrec
 
-
-
 object BinaryTreeTraversal {
 
-  def levelOrder(root: Option[TreeNode]): List[Int] = bfs(root)
+  def levelOrder(root: Option[TreeNode]): List[List[Int]] = bfs(root)
 
-  private def bfs(root: Option[TreeNode]): List[Int] = {
+  private def bfs(root: Option[TreeNode]): List[List[Int]] = {
+
     @tailrec
-    def bfsRec(queue: List[TreeNode], acc: List[Int]): List[Int] = {
+    // The pairs returned are (level, value)
+    def bfsRec(
+        queue: List[(Int, TreeNode)],
+        acc: List[(Int, Int)]
+    ): List[(Int, Int)] = {
       queue match {
-        case Nil => acc.reverse
+        case Nil          => acc.reverse
         case head :: tail =>
-          val newAcc = head.value :: acc
-          val newQueue = tail ::: List(head.left, head.right).flatten
+          val currentLevel = head._1
+          val newAcc = (currentLevel, head._2.value) :: acc
+          val newQueue = tail ::: List(head._2.left, head._2.right).flatten
+            .map((currentLevel + 1, _))
           bfsRec(newQueue, newAcc)
       }
     }
     if root.isEmpty then List()
-    else 
-    bfsRec(List(root.get), List())
+    else
+      bfsRec(List((1, root.get)), List())
+        .groupBy(_._1)
+        .map(_._2.map(_._2))
+        .toList
   }
 }
