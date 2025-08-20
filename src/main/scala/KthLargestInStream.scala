@@ -4,9 +4,9 @@ import scala.collection.mutable
 class KthLargestInStream(k: Int, numbers: Array[Int]) {
 
   private val pqr = mutable.PriorityQueue
-    .empty[Int](using Ordering[Int].reverse)
+    .empty[Int](using Ordering[Int])
     .addAll(numbers)
-    .takeRight(k)
+    .take(k)
 
   def add(n: Int): Int = {
     pqr.enqueue(n)
